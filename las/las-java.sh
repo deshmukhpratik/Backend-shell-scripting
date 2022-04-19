@@ -1,8 +1,6 @@
 #!/bin/bash
 
 errorfileName="exitError"
-
-#destPath="/root/Desktop/utility/pending/"
 destPath="/data/lasdiy/files/pending/"
 errorfilePath="/data/lasdiy/utility/"
 #mailpy="/data/lasdiy/utility"
@@ -19,13 +17,7 @@ xmx="-Xmx8g"
 javaArgs="$xmx  -Dprop.log4j=$log4jPropFilePath -Dprop.db=$dbPropFilePath -Dprop.notifyVia=email,sms -Dprop.delay=120000"
 #javaArgs="$xmx  -Dprop.log4j=$log4jPropFilePath -Dprop.db=$dbPropFilePath "
 utilityParam1="las_utility_cdi_mode"
-#sutilityParam1="test"
-#utilityParam2="$destPath$filename"
 
-#javaCmd="java $javaArgs -jar $jarPath$jarFileName $utilityParam1 $utilityParam2"
-
-#echo $javaCmd
-#$javaCmd
 fileName=$1
 echo $fileName
 java_execute()
@@ -50,7 +42,6 @@ java_execute()
         done
 }
 
-#copy_execute
 java_execute
 endTime=$(date "+%d/%m/%y:%H:%M:%S")
 echo ${endTime}
