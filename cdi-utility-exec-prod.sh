@@ -42,23 +42,19 @@ utilityParam1="revamp_cdi"
 #sutilityParam1="test"
 utilityParam2="$destPath$filename"
 
+#javaCmd="java $javaArgs -jar $jarPath$jarFileName $utilityParam1 $utilityParam2"
+
+#echo $javaCmd
+#$javaCmd
 java_execute()
 {
-          #send csv file to telegram group
-          #curl  -s -v -F "chat_id=-578975396" -F document=@${filePath} https://api.telegram.org/bot${BOT_TOKEN}/sendDocument
+         
           echo javaCmd="$(java $javaArgs -jar $jarPath/$jarFileName $utilityParam1 $utilityParam2)"
-
-          #if [ `awk '/EXIT_ERROR/ { print $3 }' $destPath/Experian_UAT_Test_Data.csv.log  > $destPath/RetailEwp.error` ]; then
            if  grep -q "EXIT_ERROR" $errorfilePath$csvLogFileName ; then
-#           curl -s "https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=-1001172296864&text=Error in Jar"
-            python ${mailpy}/mail.py "cdiFiles execution Failed!" "Java execution is failed on ${filename}."
             echo `echo EXIT_ERROR > $errorfilePath$errorfileName`
             echo `echo ERROR IN JAR >> $errorfilePath$errorfileName`
-#           curl  -s -v -F "chat_id=-1001172296864" -F document=@${errorfilePath}${csvLogFileName} https://api.telegram.org/bot${BOT_TOKEN}/sendDocument?caption="${filename} is execute failed."
-          #exit
            else
             echo "jar run succeeded"
-#           curl  -s -v -F "chat_id=-1001271230165" -F document=@${errorfilePath}${csvLogFileName} https://api.telegram.org/bot${BOT_TOKEN}/sendDocument?caption="${filename} is executed successfull."
           fi
 }
 
